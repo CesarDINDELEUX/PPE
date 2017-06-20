@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Quizz_complet</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ quizz_Complet.id }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if quizz_Complet.date %}{{ quizz_Complet.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Quizztermine</th>
+                <td>{% if quizz_Complet.quizzTermine %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('quizz_complet_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('quizz_complet_edit', { 'id': quizz_Complet.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

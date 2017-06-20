@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reponse_sequences list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse_Sequence in reponse_Sequences %}
+            <tr>
+                <td><a href="{{ path('reponse_sequence_show', { 'id': reponse_Sequence.id }) }}">{{ reponse_Sequence.id }}</a></td>
+                <td>{{ reponse_Sequence.intitule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reponse_sequence_show', { 'id': reponse_Sequence.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reponse_sequence_edit', { 'id': reponse_Sequence.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reponse_sequence_new') }}">Create a new reponse_Sequence</a>
+        </li>
+    </ul>
+{% endblock %}

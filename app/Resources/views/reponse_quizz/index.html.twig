@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Reponse_quizzs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse_Quizz in reponse_Quizzs %}
+            <tr>
+                <td><a href="{{ path('reponse_quizz_show', { 'id': reponse_Quizz.id }) }}">{{ reponse_Quizz.id }}</a></td>
+                <td>{{ reponse_Quizz.intitule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('reponse_quizz_show', { 'id': reponse_Quizz.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('reponse_quizz_edit', { 'id': reponse_Quizz.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('reponse_quizz_new') }}">Create a new reponse_Quizz</a>
+        </li>
+    </ul>
+{% endblock %}

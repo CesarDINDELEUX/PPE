@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaire_quizzs list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire_Quizz in commentaire_Quizzs %}
+            <tr>
+                <td><a href="{{ path('commentaire_quizz_show', { 'id': commentaire_Quizz.id }) }}">{{ commentaire_Quizz.id }}</a></td>
+                <td>{{ commentaire_Quizz.commentaire }}</td>
+                <td>{% if commentaire_Quizz.date %}{{ commentaire_Quizz.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commentaire_quizz_show', { 'id': commentaire_Quizz.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commentaire_quizz_edit', { 'id': commentaire_Quizz.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commentaire_quizz_new') }}">Create a new commentaire_Quizz</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Quizz_complets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Quizztermine</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for quizz_Complet in quizz_Complets %}
+            <tr>
+                <td><a href="{{ path('quizz_complet_show', { 'id': quizz_Complet.id }) }}">{{ quizz_Complet.id }}</a></td>
+                <td>{% if quizz_Complet.date %}{{ quizz_Complet.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if quizz_Complet.quizzTermine %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('quizz_complet_show', { 'id': quizz_Complet.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('quizz_complet_edit', { 'id': quizz_Complet.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('quizz_complet_new') }}">Create a new quizz_Complet</a>
+        </li>
+    </ul>
+{% endblock %}

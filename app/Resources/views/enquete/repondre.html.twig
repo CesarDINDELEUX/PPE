@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+{% block body %}  
+    {% if app.user %}
+        <form method="POST" action="{{ path("enregistrerReponseSequence")}}" class='form-horizontal'>
+            {% for sequence in enquete.sequences %}
+                <form class="form-horizontal">
+                    <fieldset>
+                        {% for questseq in sequence.QuestionsSequence %}
+                            {% if questseq.id in arrayquest %}
+                            <legend>{{ sequence.Intitule }}</legend>
+                            <!-- Multiple Checkboxes -->
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label" for="textinput">{{questseq.Intitule}}</label>                                   
+                                    {% for repseq in questseq.ReponsesQuestion %}
+                                        <div class="checkbox">
+                                            <label for="deletePm[]">
+                                               {{ repseq.Intitule }}
+                                            </label>
+                                        </div>
+                                    {%endfor%}
+                                </div>  
+                                <div class='col-md-4'>   <canvas id="{{questseq.id}}"></canvas> </div>
+                            </div>         
+                            {% else %}
+                            <legend>{{ sequence.Intitule }}</legend>
+                            <!-- Multiple Checkboxes -->
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="control-label" for="textinput">{{questseq.Intitule}}</label> 
+                                    {% for repseq in questseq.ReponsesQuestion %}
+                                        <div class="checkbox">
+                                            <label for="deletePm[]">
+                                                <input type="radio" name="{{questseq.id}}" id="{{repseq.id}}" value="{{repseq.id}}" required="true">
+                                                {{ repseq.Intitule }}
+                                            </label>
+                                        </div>
+                                    {%endfor%}
+                                </div>                            
+                            </div>  
+                            {% endif %}                           
+                            <!-- Form Name -->      
+                        {% endfor %}
+                    </fieldset>
+                {%endfor%}
+                <input type="submit" value="Valider les réponses" />
+            </form>
+            <script>
+                {% for question in nbrrep %}
+        console.log(document);
+        var ctx = document.getElementById("{{question[0]}}").getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'pie',
+                data: {
+                labels: ({{question[1]|json_encode()|raw}}),
+                        datasets: [{
+                        label: '# of Votes',
+                                data: ({{question[2]|json_encode()|raw}}),
+                                backgroundColor: ({{question[3]|json_encode()|raw}}),
+                                borderColor: ({{question[4]|json_encode()|raw}}),
+                                borderWidth: 1
+                        }]
+                },
+        });
+                {% endfor %}
+            </script>
+        {% else %}
+            Vous devez être connecté pour voir cette page.
+        {% endif %} 
+
+    {% endblock %}

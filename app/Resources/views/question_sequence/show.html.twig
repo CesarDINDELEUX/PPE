@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Question_sequence</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ question_Sequence.id }}</td>
+            </tr>
+            <tr>
+                <th>Intitule</th>
+                <td>{{ question_Sequence.intitule }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('question_sequence_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('question_sequence_edit', { 'id': question_Sequence.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

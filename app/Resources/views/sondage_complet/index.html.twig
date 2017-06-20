@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Sondage_complets list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Istermine</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sondage_Complet in sondage_Complets %}
+            <tr>
+                <td><a href="{{ path('sondage_complet_show', { 'id': sondage_Complet.id }) }}">{{ sondage_Complet.id }}</a></td>
+                <td>{% if sondage_Complet.date %}{{ sondage_Complet.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if sondage_Complet.isTermine %}Yes{% else %}No{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('sondage_complet_show', { 'id': sondage_Complet.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('sondage_complet_edit', { 'id': sondage_Complet.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('sondage_complet_new') }}">Create a new sondage_Complet</a>
+        </li>
+    </ul>
+{% endblock %}

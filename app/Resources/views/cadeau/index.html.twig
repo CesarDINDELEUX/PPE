@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cadeaus list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Intitule</th>
+                <th>Urlimg</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cadeau in cadeaus %}
+            <tr>
+                <td><a href="{{ path('cadeau_show', { 'id': cadeau.id }) }}">{{ cadeau.id }}</a></td>
+                <td>{{ cadeau.intitule }}</td>
+                <td>{{ cadeau.urlImg }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cadeau_show', { 'id': cadeau.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cadeau_edit', { 'id': cadeau.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cadeau_new') }}">Create a new cadeau</a>
+        </li>
+    </ul>
+{% endblock %}

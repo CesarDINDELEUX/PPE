@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Toutes les enquêtes</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Intitulé de l'enquête</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for enquete in enquetes %}
+            <tr>
+                <td>{{ enquete.intitule }}</td>
+                  <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('enquete_repondre', { 'id': enquete.id }) }}">Répondre à cette enquête</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

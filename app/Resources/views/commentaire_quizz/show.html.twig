@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaire_quizz</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaire_Quizz.id }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ commentaire_Quizz.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if commentaire_Quizz.date %}{{ commentaire_Quizz.date|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commentaire_quizz_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('commentaire_quizz_edit', { 'id': commentaire_Quizz.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

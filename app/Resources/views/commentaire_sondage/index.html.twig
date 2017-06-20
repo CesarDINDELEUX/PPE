@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaire_sondages list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Commentaire</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for commentaire_Sondage in commentaire_Sondages %}
+            <tr>
+                <td><a href="{{ path('commentaire_sondage_show', { 'id': commentaire_Sondage.id }) }}">{{ commentaire_Sondage.id }}</a></td>
+                <td>{{ commentaire_Sondage.commentaire }}</td>
+                <td>{% if commentaire_Sondage.date %}{{ commentaire_Sondage.date|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('commentaire_sondage_show', { 'id': commentaire_Sondage.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('commentaire_sondage_edit', { 'id': commentaire_Sondage.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commentaire_sondage_new') }}">Create a new commentaire_Sondage</a>
+        </li>
+    </ul>
+{% endblock %}
